@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Contra Tools</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_escaner">Escaner</string>
+    <string name="title_activity_login">Login</string>
+    <string name="login">Login</string>
+    <string name="usuario">Usuario</string>
+    <string name="password">Password</string>
+    <string name="registro">Registro</string>
+    <string name="_">" "</string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_activity_registro">Registro</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="atras">Atras</string>
+    <string name="email">Email</string>
+    <string name="re_password">Re-Password</string>
+    <string name="registrar">Registrar</string>
+    <string name="empresa">Empresa</string>
+    <string name="title_activity_herramientas">Herramientas</string>
+    <string name="nueva">Nueva</string>
+    <string name="title_activity_nueva_herramienta">Nueva Herramienta</string>
+    <string name="nombre">Nombre</string>
+    <string name="serial">Serial</string>
+    <string name="descripci_n">Descripción</string>
+    <string name="comentario">Comentario</string>
+    <string name="guardar">Guardar</string>
+
+</resources>
