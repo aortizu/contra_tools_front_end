@@ -27,7 +27,7 @@ import org.json.JSONArray;
 public class Herramientas extends Activity {
 
 	private ListView listView;
-	private List<Item> items;
+	private List<ItemHerramienta> items;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -36,11 +36,11 @@ public class Herramientas extends Activity {
 		setContentView(R.layout.activity_herramientas);
 
 		this.listView = (ListView) findViewById(R.id.list);
-		items = new ArrayList<Item>();
+		items = new ArrayList<ItemHerramienta>();
 
 		if (isConnected()) {
 			new HttpAsyncTask()
-					.execute("http://b1secure.com/browse.php?u=http://contratools-143332.sae1.nitrousbox.com:1337/herramienta/");
+					.execute("http://contratools-143332.sae1.nitrousbox.com:8080/herramienta/");
 		} else {
 			Toast.makeText(getBaseContext(),
 					"Error realizando conexión al servicio!", Toast.LENGTH_LONG)
@@ -52,17 +52,16 @@ public class Herramientas extends Activity {
 	public void reload(View v) {
 		if (isConnected()) {
 			new HttpAsyncTask()
-					.execute("http://b1secure.com/browse.php?u=http://contratools-143332.sae1.nitrousbox.com:1337/herramienta/");
+					.execute("http://contratools-143332.sae1.nitrousbox.com:8080/herramienta/");
 		} else {
 			Toast.makeText(getBaseContext(),
 					"Error realizando conexión al servicio!", Toast.LENGTH_LONG)
 					.show();
 		}
 	}
-	
-	
-	public void nuevaHerramienta (View v){
-		Intent in = new Intent ( this, NuevaHerramienta.class );
+
+	public void nuevaHerramienta(View v) {
+		Intent in = new Intent(this, NuevaHerramienta.class);
 		startActivity(in);
 	}
 
@@ -156,23 +155,32 @@ public class Herramientas extends Activity {
 								.substring(nombre.indexOf("nombre\":") + 9);
 						nombre = nombre.substring(0, nombre.indexOf("\""));
 
-						String intereses = listdata.get(i);
-						intereses = intereses.substring(intereses
+						String serial = listdata.get(i);
+						serial = serial.substring(serial
 								.indexOf("serial\":") + 9);
-						intereses = intereses.substring(0,
-								intereses.indexOf("\""));
+						serial = serial.substring(0,
+								serial.indexOf("\""));
+						
+						String descripcion = listdata.get(i);
+						descripcion = descripcion.substring(descripcion
+								.indexOf("descripcion\":") + 14);
+						descripcion = descripcion.substring(0,
+								descripcion.indexOf("\""));
+						
+						String comentario = listdata.get(i);
+						comentario = comentario.substring(comentario
+								.indexOf("comentario\":") + 13);
+						comentario = comentario.substring(0,
+								comentario.indexOf("\""));
 
-						items.add(new Item(R.drawable.herramienta, nombre,
-								intereses));
+						items.add(new ItemHerramienta(R.drawable.herramienta, nombre,
+								serial,descripcion,comentario));
 					}
 
 					// Sets the data behind this ListView
-					listView.setAdapter(new ItemAdapter(Herramientas.this,
+					listView.setAdapter(new ItemAdapterHerramienta(Herramientas.this,
 							items));
 
-					// Register a callback to be invoked when an item in this
-					// AdapterView
-					// has been clicked
 
 					listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 						@Override

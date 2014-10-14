@@ -128,14 +128,6 @@ public class Registro extends Activity {
 		String repassword = in3.getText().toString();
 		String email = in4.getText().toString();
 		String empresa = in5.getText().toString();
-		
-		
-		usuario = usuario.replace(" ", "%20");
-		password = password.replace(" ", "%20");
-		repassword = repassword.replace(" ", "%20");
-		email = email.replace(" ", "%20");
-		empresa = empresa.replace(" ", "%20");
-		
 
 		pattern = Pattern.compile(EMAIL_PATTERN);
 		matcher = pattern.matcher(email);
@@ -145,14 +137,12 @@ public class Registro extends Activity {
 				isConnected();
 
 				new HttpAsyncTask()
-						.execute("http://b1secure.com/browse.php?u=http%3A%2F%2Fcontratools-143332.sae1.nitrousbox.com%3A1337%2Fusuario%2Fcreate%3Fusuario%3D"
+						.execute("http://contratools-143332.sae1.nitrousbox.com:8080/usuario/create?usuario="
 								+ usuario
-								+ "%26password%3D"
+								+ "&password="
 								+ password
-								+ "%26email%3D"
-								+ email
-								+ "%26empresa%3D"
-								+ empresa);
+								+ "&email="
+								+ email + "&empresa=" + empresa);
 			} else {
 				Toast.makeText(getBaseContext(),
 						"Por favor ingrese un correo user@domain.com valido",

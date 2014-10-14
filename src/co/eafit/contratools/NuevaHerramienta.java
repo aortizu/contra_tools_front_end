@@ -58,7 +58,7 @@ public class NuevaHerramienta extends Activity {
 
 	public void cerrar(View v) {
 		Toast.makeText(getBaseContext(), "Cancelar", Toast.LENGTH_LONG).show();
-		Intent in = new Intent(this,Herramientas.class);
+		Intent in = new Intent(this, Herramientas.class);
 		startActivity(in);
 		finish();
 	}
@@ -121,21 +121,19 @@ public class NuevaHerramienta extends Activity {
 		String serial = in2.getText().toString();
 		String descripcion = in3.getText().toString();
 		String comentario = in4.getText().toString();
-		
+
 		nombre = nombre.replace(" ", "%20");
 		serial = serial.replace(" ", "%20");
 		descripcion = descripcion.replace(" ", "%20");
 		comentario = comentario.replace(" ", "%20");
-		
 
 		new HttpAsyncTask()
-				.execute("http://b1secure.com/browse.php?u=http%3A%2F%2Fcontratools-143332.sae1.nitrousbox.com%3A1337%2Fherramienta%2Fcreate%3Fnombre%3D"
+				.execute("http://contratools-143332.sae1.nitrousbox.com:8080/herramienta/create?nombre="
 						+ nombre
-						+ "%26serial%3D"
+						+ "&serial="
 						+ serial
-						+ "%26descripcion%3D"
-						+ descripcion
-						+ "%26comentario%3D" + comentario);
+						+ "&descripcion="
+						+ descripcion + "&comentario=" + comentario);
 
 	}
 
@@ -157,8 +155,8 @@ public class NuevaHerramienta extends Activity {
 					finish();
 				} else {
 					Toast.makeText(getBaseContext(),
-							"Error al guardar la herramienta", Toast.LENGTH_LONG)
-							.show();
+							"Error al guardar la herramienta",
+							Toast.LENGTH_LONG).show();
 				}
 			} catch (Exception e) {
 				// TODO: handle exception

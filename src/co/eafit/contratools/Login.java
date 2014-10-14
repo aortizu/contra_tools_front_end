@@ -67,7 +67,7 @@ public class Login extends Activity {
 		isConnected();
 
 		new HttpAsyncTask()
-				.execute("http://b1secure.com/browse.php?u=http://contratools-143332.sae1.nitrousbox.com:1337/usuario/?usuario="
+				.execute("http://contratools-143332.sae1.nitrousbox.com:8080/usuario/?usuario="
 						+ s1);
 
 	}
@@ -151,43 +151,7 @@ public class Login extends Activity {
 				JSONArray json = new JSONArray(result);
 				String respuesta = json.toString(1);
 				if (respuesta.contains(s1) && respuesta.contains(s2)) {
-					/*
-					 * final GlobalClass globalVariable = (GlobalClass)
-					 * getApplicationContext();
-					 * 
-					 * String userID = respuesta; userID =
-					 * userID.substring(userID.indexOf("id\":")+6); userID =
-					 * userID.substring(0,userID.indexOf("\""));
-					 * globalVariable.setId(userID);
-					 * 
-					 * String nombre = respuesta; nombre =
-					 * nombre.substring(nombre.indexOf("user\":")+8); nombre =
-					 * nombre.substring(0,nombre.indexOf("\""));
-					 * globalVariable.setNombre(nombre);
-					 * 
-					 * String nacionalidad = respuesta; nacionalidad =
-					 * nacionalidad
-					 * .substring(nacionalidad.indexOf("nacionalidad\":")+16);
-					 * nacionalidad =
-					 * nacionalidad.substring(0,nacionalidad.indexOf("\""));
-					 * globalVariable.setNacionalidad(nacionalidad);
-					 * 
-					 * String carrera = respuesta; carrera =
-					 * carrera.substring(carrera.indexOf("carrera\":")+11);
-					 * carrera = carrera.substring(0,carrera.indexOf("\""));
-					 * globalVariable.setCarrera(carrera);
-					 * 
-					 * String idiomas = respuesta; idiomas =
-					 * idiomas.substring(idiomas.indexOf("idiomas\":")+11);
-					 * idiomas = idiomas.substring(0,idiomas.indexOf("\""));
-					 * globalVariable.setIdiomas(idiomas);
-					 * 
-					 * String intereses = respuesta; intereses =
-					 * intereses.substring
-					 * (intereses.indexOf("intereses\":")+13); intereses =
-					 * intereses.substring(0,intereses.indexOf("\""));
-					 * globalVariable.setIntereses(intereses);
-					 */
+
 
 					// setContentView(R.layout.activity_home);
 					navigatetoHomeActivity();

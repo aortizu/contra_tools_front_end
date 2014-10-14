@@ -47,5 +47,12 @@ public class Home extends Activity {
 		Intent in = new Intent(this, Herramientas.class);
 		startActivity(in);
 	}
+	
+	public void empleados(View v) {
+		Toast.makeText(getBaseContext(), "Empleados", Toast.LENGTH_LONG)
+				.show();
+		Intent in = new Intent(this, Empleados.class);
+		startActivity(in);
+	}
 
 }

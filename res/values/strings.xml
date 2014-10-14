@@ -27,5 +27,16 @@
     <string name="descripci_n">Descripción</string>
     <string name="comentario">Comentario</string>
     <string name="guardar">Guardar</string>
+    <string name="title_activity_empleados">Empleados</string>
+    <string name="nuevo">Nuevo</string>
+    <string name="title_activity_nuevo_empleado">NuevoEmpleado</string>
+    <string name="cargo">Cargo</string>
+    <string name="fecha_de_vinculacion">Fecha de vinculacion</string>
+    <string name="documento">Documento</string>
+    <string name="title_activity_informacion_empleado">InformacionEmpleado</string>
+    <string name="asignar_herramienta">Asignar herramienta</string>
+    <string name="herramientas_asignadas">Herramientas asignadas</string>
+    <string name="comentarios">Comentarios</string>
+    <string name="title_activity_empleado_herramientas">Herramientas Emp</string>
 
 </resources>
