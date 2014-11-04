@@ -60,26 +60,13 @@ public class Herramientas extends Activity {
 		}
 	}
 
-	public void nuevaHerramienta(View v) {
-		Intent in = new Intent(this, NuevaHerramienta.class);
-		startActivity(in);
-	}
-
 	public static String GET(String url) {
 		InputStream inputStream = null;
 		String result = "";
 		try {
-
-			// create HttpClient
 			HttpClient httpclient = new DefaultHttpClient();
-
-			// make GET request to the given URL
 			HttpResponse httpResponse = httpclient.execute(new HttpGet(url));
-
-			// receive response as inputStream
 			inputStream = httpResponse.getEntity().getContent();
-
-			// convert inputstream to string
 			if (inputStream != null)
 				result = convertInputStreamToString(inputStream);
 			else
@@ -115,13 +102,6 @@ public class Herramientas extends Activity {
 			return false;
 	}
 
-	public void navigatetoHomeActivity() {
-		Intent homeIntent = new Intent(getApplicationContext(),
-				Herramientas.class);
-		homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		startActivity(homeIntent);
-		finish();
-	}
 
 	private class HttpAsyncTask extends AsyncTask<String, Void, String> {
 		@Override
@@ -129,13 +109,10 @@ public class Herramientas extends Activity {
 
 			return GET(urls[0]);
 		}
-
-		// onPostExecute displays the results of the AsyncTask.
+		
 		@Override
 		protected void onPostExecute(String result) {
 			try {
-				// Toast.makeText(getBaseContext(), "Received!",
-				// Toast.LENGTH_LONG).show();
 				JSONArray json = new JSONArray(result);
 				String respuesta = json.toString(1);
 
@@ -150,51 +127,56 @@ public class Herramientas extends Activity {
 				if (respuesta.contains("serial")) {
 					items.clear();
 					for (int i = 0; i < listdata.size(); i++) {
+						String ID = listdata.get(i);
+						ID = ID.substring(ID.indexOf("id\":") + 4);
+						ID = ID.substring(0, ID.indexOf(","));
+						
 						String nombre = listdata.get(i);
 						nombre = nombre
 								.substring(nombre.indexOf("nombre\":") + 9);
 						nombre = nombre.substring(0, nombre.indexOf("\""));
 
 						String serial = listdata.get(i);
-						serial = serial.substring(serial
-								.indexOf("serial\":") + 9);
-						serial = serial.substring(0,
-								serial.indexOf("\""));
-						
+						serial = serial
+								.substring(serial.indexOf("serial\":") + 9);
+						serial = serial.substring(0, serial.indexOf("\""));
+
 						String descripcion = listdata.get(i);
 						descripcion = descripcion.substring(descripcion
 								.indexOf("descripcion\":") + 14);
 						descripcion = descripcion.substring(0,
 								descripcion.indexOf("\""));
-						
+
 						String comentario = listdata.get(i);
 						comentario = comentario.substring(comentario
 								.indexOf("comentario\":") + 13);
 						comentario = comentario.substring(0,
 								comentario.indexOf("\""));
 
-						items.add(new ItemHerramienta(R.drawable.herramienta, nombre,
-								serial,descripcion,comentario));
+						items.add(new ItemHerramienta(R.drawable.herramienta,
+								nombre, serial, descripcion, comentario, ID));
 					}
 
-					// Sets the data behind this ListView
-					listView.setAdapter(new ItemAdapterHerramienta(Herramientas.this,
-							items));
-
+					listView.setAdapter(new ItemAdapterHerramienta(
+							Herramientas.this, items));
 
 					listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 						@Override
 						public void onItemClick(AdapterView<?> adapter,
 								View view, int position, long arg) {
-							// Sets the visibility of the indeterminate progress
-							// bar in the
-							// title
-							setProgressBarIndeterminateVisibility(true);
-							// Item item = (Item)
-							// listView.getAdapter().getItem(position);
-							// ProgressDialog.show(Home.this,
-							// item.getTitle(), "Cargando");
-
+							
+							ItemHerramienta item = (ItemHerramienta) listView.getAdapter().getItem(
+									position);
+							
+							Toast.makeText(getBaseContext(), "Información de herramienta",
+									Toast.LENGTH_LONG).show();
+							Intent in = new Intent(Herramientas.this, InformacionHerramienta.class);
+							in.putExtra("nombre", item.getNombre());
+							in.putExtra("serial", item.getSerial());
+							in.putExtra("descripcion", item.getDescripcion());
+							in.putExtra("comentarios", item.getComentario());
+							in.putExtra("ID", item.getId());
+							startActivity(in);
 						}
 					});
 				} else if (respuesta.equals("[]")) {
@@ -204,16 +186,35 @@ public class Herramientas extends Activity {
 							"Error realizando conexión al servicio!",
 							Toast.LENGTH_LONG).show();
 				}
-				// etResponse.setText(json.toString(1));
 			} catch (Exception e) {
-				// TODO: handle exception
+				e.printStackTrace();
 			}
 		}
 	}
 
+
+	public void navigatetoHomeActivity() {
+		Intent homeIntent = new Intent(getApplicationContext(),
+				Herramientas.class);
+		homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(homeIntent);
+		finish();
+	}
+	
 	public void atras(View v) {
 		Toast.makeText(getBaseContext(), "Atras!", Toast.LENGTH_LONG).show();
 		finish();
+	}
+	
+	public void buscarHerramienta(View v) {
+		Toast.makeText(getBaseContext(), "Buscar herramienta", Toast.LENGTH_LONG).show();
+		Intent in = new Intent(this, BuscarHerramienta.class);
+		startActivity(in);
+	}
+	
+	public void nuevaHerramienta(View v) {
+		Intent in = new Intent(this, NuevaHerramienta.class);
+		startActivity(in);
 	}
 
 }

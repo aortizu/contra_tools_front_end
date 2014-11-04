@@ -9,8 +9,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
-
 import net.sourceforge.zbar.Symbol;
 import co.eafit.escaner.ZBarConstants;
 import co.eafit.escaner.ZBarScannerActivity;
@@ -82,11 +80,8 @@ public class Escaner extends Activity {
 		case ZBAR_QR_SCANNER_REQUEST:
 			if (resultCode == RESULT_OK) {
 				QR = data.getStringExtra(ZBarConstants.SCAN_RESULT);
-				Toast.makeText(
-						this,
-						"Scan Result = "
-								+ QR,
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "Scan Result = " + QR, Toast.LENGTH_SHORT)
+						.show();
 				if (!asignar.isEmpty()) {
 					new HttpAsyncTask()
 							.execute("http://contratools-143332.sae1.nitrousbox.com:8080/herramienta/"
@@ -108,17 +103,9 @@ public class Escaner extends Activity {
 		InputStream inputStream = null;
 		String result = "";
 		try {
-
-			// create HttpClient
 			HttpClient httpclient = new DefaultHttpClient();
-
-			// make GET request to the given URL
 			HttpResponse httpResponse = httpclient.execute(new HttpGet(url));
-
-			// receive response as inputStream
 			inputStream = httpResponse.getEntity().getContent();
-
-			// convert inputstream to string
 			if (inputStream != null)
 				result = convertInputStreamToString(inputStream);
 			else
@@ -174,7 +161,11 @@ public class Escaner extends Activity {
 					new HttpAsyncTask1()
 							.execute("http://contratools-143332.sae1.nitrousbox.com:8080/empleado_herramienta/create?nombre_empleado="
 									+ extras.getString("nombre_empleado")
-									+ "&id_empleado="+ extras.getString("id_empleado")+"&nombre_herramienta="+nombre+"&id_herramienta="+QR);
+									+ "&id_empleado="
+									+ extras.getString("id_empleado")
+									+ "&nombre_herramienta="
+									+ nombre
+									+ "&id_herramienta=" + QR);
 
 				} else if (result.contains("[]")) {
 					Toast.makeText(
@@ -205,8 +196,8 @@ public class Escaner extends Activity {
 
 				if (result.contains("nombre_herramienta")) {
 					Toast.makeText(getBaseContext(),
-							"Herramienta asignada correctamente", Toast.LENGTH_LONG)
-							.show();
+							"Herramienta asignada correctamente",
+							Toast.LENGTH_LONG).show();
 				} else {
 					Toast.makeText(getBaseContext(),
 							"Error realizando la asignacion de la herramienta",

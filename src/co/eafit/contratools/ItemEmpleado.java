@@ -3,12 +3,11 @@ package co.eafit.contratools;
 public class ItemEmpleado {
 
 	private int image;
-	private String nombre,cargo,documento,vinculacion,comentarios,id;
+	private String nombre, cargo, documento, vinculacion, comentarios, id;
 
 	public ItemEmpleado() {
 		super();
 	}
-	
 
 	public ItemEmpleado(int image, String nombre, String cargo,
 			String documento, String vinculacion, String comentarios, String id) {
@@ -19,21 +18,16 @@ public class ItemEmpleado {
 		this.documento = documento;
 		this.vinculacion = vinculacion;
 		this.comentarios = comentarios;
-		this.id=id;
+		this.id = id;
 	}
 
-	
-	
-	
 	public String getId() {
 		return id;
 	}
 
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
 
 	public int getImage() {
 		return image;
@@ -82,7 +76,5 @@ public class ItemEmpleado {
 	public void setComentarios(String comentarios) {
 		this.comentarios = comentarios;
 	}
-
-	
 
 }

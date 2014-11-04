@@ -80,6 +80,50 @@
             android:name=".EmpleadoHerramientas"
             android:label="@string/title_activity_empleado_herramientas" >
         </activity>
+        <activity
+            android:name=".InformacionHerramienta"
+            android:label="@string/title_activity_informacion_herramienta" >
+        </activity>
+        <activity
+            android:name=".BuscarEmpleado"
+            android:label="@string/title_activity_buscar_empleado" >
+        </activity>
+        <activity
+            android:name=".Admon"
+            android:label="@string/title_activity_admon" >
+        </activity>
+        <activity
+            android:name=".Proyectos"
+            android:label="@string/title_activity_proyectos" >
+        </activity>
+        <activity
+            android:name=".NuevoProyecto"
+            android:label="@string/title_activity_nuevo_proyecto" >
+        </activity>
+        <activity
+            android:name=".InformacionProyecto"
+            android:label="@string/title_activity_informacion_proyecto" >
+        </activity>
+        <activity
+            android:name=".ProyectoEmpleado"
+            android:label="@string/title_activity_proyecto_empleado" >
+        </activity>
+        <activity
+            android:name=".EditarHerramienta"
+            android:label="@string/title_activity_editar_herramienta" >
+        </activity>
+        <activity
+            android:name=".EditarEmpleado"
+            android:label="@string/title_activity_editar_empleado" >
+        </activity>
+        <activity
+            android:name=".EditarProyecto"
+            android:label="@string/title_activity_editar_proyecto" >
+        </activity>
+        <activity
+            android:name=".BuscarHerramienta"
+            android:label="@string/title_activity_buscar_herramienta" >
+        </activity>
     </application>
 
 </manifest>

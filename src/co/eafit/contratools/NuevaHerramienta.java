@@ -31,7 +31,7 @@ public class NuevaHerramienta extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_nueva_herramienta);
 
-		in1 = (EditText) findViewById(R.id.editText1);
+		in1 = (EditText) findViewById(R.id.actualPassword);
 		in2 = (EditText) findViewById(R.id.editText2);
 		in3 = (EditText) findViewById(R.id.editText3);
 		in4 = (EditText) findViewById(R.id.editText4);

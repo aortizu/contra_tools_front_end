@@ -3,20 +3,31 @@ package co.eafit.contratools;
 public class ItemHerramienta {
 
 	private int image;
-	private String nombre, serial, descripcion, comentario;
+	private String nombre, serial, descripcion, comentario, id;
 
 	public ItemHerramienta() {
 		super();
 	}
 
 	public ItemHerramienta(int image, String nombre, String serial,
-			String descripcion, String comentario) {
+			String descripcion, String comentario, String id ) {
 		super();
 		this.image = image;
 		this.nombre = nombre;
 		this.serial = serial;
 		this.descripcion = descripcion;
 		this.comentario = comentario;
+		this.id=id;
+	}
+
+	
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public int getImage() {

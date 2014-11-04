@@ -33,7 +33,7 @@ public class Login extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		in1 = (EditText) findViewById(R.id.editText1);
+		in1 = (EditText) findViewById(R.id.actualPassword);
 		in2 = (EditText) findViewById(R.id.editText2);
 
 	}
@@ -151,7 +151,6 @@ public class Login extends Activity {
 				JSONArray json = new JSONArray(result);
 				String respuesta = json.toString(1);
 				if (respuesta.contains(s1) && respuesta.contains(s2)) {
-
 
 					// setContentView(R.layout.activity_home);
 					navigatetoHomeActivity();

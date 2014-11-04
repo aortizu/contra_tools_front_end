@@ -35,22 +35,27 @@ public class Home extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	public void escaner(View v) {
-		Toast.makeText(getBaseContext(), "Escanear", Toast.LENGTH_LONG).show();
-		Intent in = new Intent(this, Escaner.class);
+	public void admon(View v) {
+		Toast.makeText(getBaseContext(), "Administración", Toast.LENGTH_LONG).show();
+		Intent in = new Intent(this, Admon.class);
 		startActivity(in);
 	}
-
+	
+	public void proyectos(View v) {
+		Toast.makeText(getBaseContext(), "Proyectos", Toast.LENGTH_LONG).show();
+		Intent in = new Intent(this, Proyectos.class);
+		startActivity(in);
+	}
+	
 	public void herramientas(View v) {
 		Toast.makeText(getBaseContext(), "Herramientas", Toast.LENGTH_LONG)
 				.show();
 		Intent in = new Intent(this, Herramientas.class);
 		startActivity(in);
 	}
-	
+
 	public void empleados(View v) {
-		Toast.makeText(getBaseContext(), "Empleados", Toast.LENGTH_LONG)
-				.show();
+		Toast.makeText(getBaseContext(), "Empleados", Toast.LENGTH_LONG).show();
 		Intent in = new Intent(this, Empleados.class);
 		startActivity(in);
 	}

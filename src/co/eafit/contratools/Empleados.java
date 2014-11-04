@@ -32,7 +32,6 @@ public class Empleados extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// Use a custom layout file
 		setContentView(R.layout.activity_empleados);
 
 		this.listView = (ListView) findViewById(R.id.list);
@@ -69,17 +68,9 @@ public class Empleados extends Activity {
 		InputStream inputStream = null;
 		String result = "";
 		try {
-
-			// create HttpClient
 			HttpClient httpclient = new DefaultHttpClient();
-
-			// make GET request to the given URL
 			HttpResponse httpResponse = httpclient.execute(new HttpGet(url));
-
-			// receive response as inputStream
 			inputStream = httpResponse.getEntity().getContent();
-
-			// convert inputstream to string
 			if (inputStream != null)
 				result = convertInputStreamToString(inputStream);
 			else
@@ -182,10 +173,8 @@ public class Empleados extends Activity {
 								comentarios.indexOf("\""));
 
 						items.add(new ItemEmpleado(R.drawable.empleado, nombre,
-								cargo, documento, vinculacion, comentarios,id));
+								cargo, documento, vinculacion, comentarios, id));
 					}
-
-					// Sets the data behind this ListView
 					listView.setAdapter(new ItemAdapterEmpleado(Empleados.this,
 							items));
 
@@ -225,9 +214,10 @@ public class Empleados extends Activity {
 		}
 	}
 
-	public void atras(View v) {
-		Toast.makeText(getBaseContext(), "Atras!", Toast.LENGTH_LONG).show();
-		finish();
+	public void buscarEmpleado(View v) {
+		Toast.makeText(getBaseContext(), "Buscar empleado", Toast.LENGTH_LONG).show();
+		Intent in = new Intent(this, BuscarEmpleado.class);
+		startActivity(in);
 	}
 
 }

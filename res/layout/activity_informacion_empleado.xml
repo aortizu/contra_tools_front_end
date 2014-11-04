@@ -24,7 +24,7 @@
 
         <TextView
             android:id="@+id/textNombre"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/nombre"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -41,7 +41,7 @@
 
         <TextView
             android:id="@+id/TextCargo"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/serial"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -58,7 +58,7 @@
 
         <TextView
             android:id="@+id/TextDocumento"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/descripci_n"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -75,7 +75,7 @@
 
         <TextView
             android:id="@+id/TextVinculacion"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/comentario"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -92,7 +92,7 @@
 
         <TextView
             android:id="@+id/TextComentarios"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/comentario"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -143,8 +143,24 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#ff005EFF"
-            android:onClick="atras"
-            android:text="@string/atras"
+            android:onClick="listaHerramientas"
+            android:text="@string/editar"
+            android:textColor="#ffffffff" />
+
+        <TextView
+            android:id="@+id/TextView03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Button
+            android:id="@+id/Button02"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff005EFF"
+            android:onClick="listaHerramientas"
+            android:text="@string/eliminar"
             android:textColor="#ffffffff" />
     </LinearLayout>
 

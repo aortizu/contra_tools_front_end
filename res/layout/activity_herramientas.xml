@@ -49,8 +49,8 @@
             android:layout_weight="0.32"
             android:background="#ff005EFF"
             android:contentDescription="@string/hello_world"
-            android:onClick="atras"
-            android:text="@string/atras"
+            android:onClick="buscarHerramienta"
+            android:text="@string/buscar"
             android:textColor="#ffffffff" />
 
         <TextView

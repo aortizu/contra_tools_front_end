@@ -31,7 +31,7 @@ public class NuevoEmpleado extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_nuevo_empleado);
 
-		in1 = (EditText) findViewById(R.id.editText1);
+		in1 = (EditText) findViewById(R.id.actualPassword);
 		in2 = (EditText) findViewById(R.id.editText2);
 		in3 = (EditText) findViewById(R.id.documento);
 		in4 = (EditText) findViewById(R.id.vinculacion);
@@ -161,8 +161,8 @@ public class NuevoEmpleado extends Activity {
 					finish();
 				} else {
 					Toast.makeText(getBaseContext(),
-							"Error al guardar el empleado",
-							Toast.LENGTH_LONG).show();
+							"Error al guardar el empleado", Toast.LENGTH_LONG)
+							.show();
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
