@@ -10,12 +10,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ItemAdapter extends BaseAdapter {
+public class ItemAdapterProyecto extends BaseAdapter {
 
 	private Context context;
-	private List<Item> items;
+	private List<ItemProyecto> items;
 
-	public ItemAdapter(Context context, List<Item> items) {
+	public ItemAdapterProyecto(Context context, List<ItemProyecto> items) {
 		this.context = context;
 		this.items = items;
 	}
@@ -41,20 +41,17 @@ public class ItemAdapter extends BaseAdapter {
 		View rowView = convertView;
 
 		if (convertView == null) {
-			// Create a new view into the list.
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			rowView = inflater.inflate(R.layout.list_item, parent, false);
 		}
-
-		// Set data into the view.
 		ImageView imagen = (ImageView) rowView.findViewById(R.id.ivItem);
 		TextView nombre = (TextView) rowView.findViewById(R.id.nombre);
 		TextView intereses = (TextView) rowView.findViewById(R.id.intereses);
 
-		Item item = this.items.get(position);
+		ItemProyecto item = this.items.get(position);
 		nombre.setText(item.getNombre());
-		intereses.setText(item.getSerial());
+		intereses.setText(item.getCliente());
 		imagen.setImageResource(item.getImage());
 
 		return rowView;

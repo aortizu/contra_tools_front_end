@@ -77,12 +77,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
+            android:onClick="nombre"
             android:text="@string/nombre" />
 
         <CheckBox
             android:id="@+id/checkBox2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="documento"
             android:text="@string/documento" />
 
     </LinearLayout>

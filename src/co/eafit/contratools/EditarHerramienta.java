@@ -75,7 +75,7 @@ public class EditarHerramienta extends Activity {
 
 	public void editarHerramienta(View v) {
 		if (isConnected()) {
-			
+
 			String nombre = in1.getText().toString();
 			String serial = in2.getText().toString();
 			String descripcion = in3.getText().toString();
@@ -85,8 +85,8 @@ public class EditarHerramienta extends Activity {
 			serial = serial.replace(" ", "%20");
 			descripcion = descripcion.replace(" ", "%20");
 			comentario = comentario.replace(" ", "%20");
-			
-			new HttpAsyncTaskintar()
+
+			new HttpAsyncTaskEditar()
 					.execute("http://contratools-143332.sae1.nitrousbox.com:8080/herramienta/update/"
 							+ id
 							+ "?nombre="
@@ -95,7 +95,8 @@ public class EditarHerramienta extends Activity {
 							+ serial
 							+ "&descripcion="
 							+ descripcion
-							+ "&comentario=" + comentario);
+							+ "&comentario="
+							+ comentario);
 		} else {
 			Toast.makeText(getBaseContext(),
 					"Error realizando conexión al servicio!", Toast.LENGTH_LONG)
@@ -144,7 +145,7 @@ public class EditarHerramienta extends Activity {
 			return false;
 	}
 
-	private class HttpAsyncTaskintar extends AsyncTask<String, Void, String> {
+	private class HttpAsyncTaskEditar extends AsyncTask<String, Void, String> {
 		@Override
 		protected String doInBackground(String... urls) {
 
@@ -154,7 +155,8 @@ public class EditarHerramienta extends Activity {
 		@Override
 		protected void onPostExecute(String result) {
 			try {
-				if (result.contains("nombre") && result.contains(in1.getText().toString())) {
+				if (result.contains("nombre")
+						&& result.contains(in1.getText().toString())) {
 					Toast.makeText(getBaseContext(),
 							"Herramienta editada exitosamente!",
 							Toast.LENGTH_LONG).show();

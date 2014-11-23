@@ -10,18 +10,16 @@ public class ItemHerramienta {
 	}
 
 	public ItemHerramienta(int image, String nombre, String serial,
-			String descripcion, String comentario, String id ) {
+			String descripcion, String comentario, String id) {
 		super();
 		this.image = image;
 		this.nombre = nombre;
 		this.serial = serial;
 		this.descripcion = descripcion;
 		this.comentario = comentario;
-		this.id=id;
+		this.id = id;
 	}
 
-	
-	
 	public String getId() {
 		return id;
 	}

@@ -111,8 +111,24 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#ff005EFF"
-            android:onClick="asignarHerramienta"
+            android:onClick="launchQRScanner"
             android:text="@string/asignar_herramienta"
+            android:textColor="#ffffffff" />
+
+        <TextView
+            android:id="@+id/TextView02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Button
+            android:id="@+id/Button03"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff005EFF"
+            android:onClick="retirar"
+            android:text="@string/retirar_herramienta"
             android:textColor="#ffffffff" />
 
         <TextView
@@ -143,7 +159,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#ff005EFF"
-            android:onClick="listaHerramientas"
+            android:onClick="editar"
             android:text="@string/editar"
             android:textColor="#ffffffff" />
 
@@ -159,7 +175,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#ff005EFF"
-            android:onClick="listaHerramientas"
+            android:onClick="eliminar"
             android:text="@string/eliminar"
             android:textColor="#ffffffff" />
     </LinearLayout>

@@ -36,17 +36,18 @@ public class Home extends Activity {
 	}
 
 	public void admon(View v) {
-		Toast.makeText(getBaseContext(), "Administración", Toast.LENGTH_LONG).show();
+		Toast.makeText(getBaseContext(), "Administración", Toast.LENGTH_LONG)
+				.show();
 		Intent in = new Intent(this, Admon.class);
 		startActivity(in);
 	}
-	
+
 	public void proyectos(View v) {
 		Toast.makeText(getBaseContext(), "Proyectos", Toast.LENGTH_LONG).show();
 		Intent in = new Intent(this, Proyectos.class);
 		startActivity(in);
 	}
-	
+
 	public void herramientas(View v) {
 		Toast.makeText(getBaseContext(), "Herramientas", Toast.LENGTH_LONG)
 				.show();

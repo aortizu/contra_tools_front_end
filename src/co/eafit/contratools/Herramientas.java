@@ -102,14 +102,13 @@ public class Herramientas extends Activity {
 			return false;
 	}
 
-
 	private class HttpAsyncTask extends AsyncTask<String, Void, String> {
 		@Override
 		protected String doInBackground(String... urls) {
 
 			return GET(urls[0]);
 		}
-		
+
 		@Override
 		protected void onPostExecute(String result) {
 			try {
@@ -130,7 +129,7 @@ public class Herramientas extends Activity {
 						String ID = listdata.get(i);
 						ID = ID.substring(ID.indexOf("id\":") + 4);
 						ID = ID.substring(0, ID.indexOf(","));
-						
+
 						String nombre = listdata.get(i);
 						nombre = nombre
 								.substring(nombre.indexOf("nombre\":") + 9);
@@ -164,13 +163,15 @@ public class Herramientas extends Activity {
 						@Override
 						public void onItemClick(AdapterView<?> adapter,
 								View view, int position, long arg) {
-							
-							ItemHerramienta item = (ItemHerramienta) listView.getAdapter().getItem(
-									position);
-							
-							Toast.makeText(getBaseContext(), "Información de herramienta",
+
+							ItemHerramienta item = (ItemHerramienta) listView
+									.getAdapter().getItem(position);
+
+							Toast.makeText(getBaseContext(),
+									"Información de herramienta",
 									Toast.LENGTH_LONG).show();
-							Intent in = new Intent(Herramientas.this, InformacionHerramienta.class);
+							Intent in = new Intent(Herramientas.this,
+									InformacionHerramienta.class);
 							in.putExtra("nombre", item.getNombre());
 							in.putExtra("serial", item.getSerial());
 							in.putExtra("descripcion", item.getDescripcion());
@@ -192,7 +193,6 @@ public class Herramientas extends Activity {
 		}
 	}
 
-
 	public void navigatetoHomeActivity() {
 		Intent homeIntent = new Intent(getApplicationContext(),
 				Herramientas.class);
@@ -200,18 +200,19 @@ public class Herramientas extends Activity {
 		startActivity(homeIntent);
 		finish();
 	}
-	
+
 	public void atras(View v) {
 		Toast.makeText(getBaseContext(), "Atras!", Toast.LENGTH_LONG).show();
 		finish();
 	}
-	
+
 	public void buscarHerramienta(View v) {
-		Toast.makeText(getBaseContext(), "Buscar herramienta", Toast.LENGTH_LONG).show();
+		Toast.makeText(getBaseContext(), "Buscar herramienta",
+				Toast.LENGTH_LONG).show();
 		Intent in = new Intent(this, BuscarHerramienta.class);
 		startActivity(in);
 	}
-	
+
 	public void nuevaHerramienta(View v) {
 		Intent in = new Intent(this, NuevaHerramienta.class);
 		startActivity(in);

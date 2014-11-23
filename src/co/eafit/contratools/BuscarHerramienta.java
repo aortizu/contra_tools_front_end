@@ -53,7 +53,6 @@ public class BuscarHerramienta extends Activity {
 		this.check1 = (CheckBox) findViewById(R.id.checkBox1);
 		this.check2 = (CheckBox) findViewById(R.id.checkBox2);
 		this.txt = (EditText) findViewById(R.id.editText1);
-		
 		items = new ArrayList<ItemHerramienta>();
 	}
 
@@ -74,7 +73,7 @@ public class BuscarHerramienta extends Activity {
 
 	public void buscar(View v) {
 		if (isConnected()) {
-			new HttpAsyncTask()
+			new HttpAsyncTaskText()
 					.execute("http://contratools-143332.sae1.nitrousbox.com:8080/herramienta/");
 		} else {
 			Toast.makeText(getBaseContext(),
@@ -122,7 +121,7 @@ public class BuscarHerramienta extends Activity {
 				Toast.makeText(this, "Scan Result = " + QR, Toast.LENGTH_SHORT)
 						.show();
 				if (!QR.isEmpty()) {
-					new HttpAsyncTask1()
+					new HttpAsyncTaskScanner()
 							.execute("http://contratools-143332.sae1.nitrousbox.com:8080/herramienta/"
 									+ QR);
 				}
@@ -179,7 +178,7 @@ public class BuscarHerramienta extends Activity {
 			return false;
 	}
 
-	private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+	private class HttpAsyncTaskText extends AsyncTask<String, Void, String> {
 		@Override
 		protected String doInBackground(String... urls) {
 
@@ -206,7 +205,7 @@ public class BuscarHerramienta extends Activity {
 						String ID = listdata.get(i);
 						ID = ID.substring(ID.indexOf("id\":") + 4);
 						ID = ID.substring(0, ID.indexOf(","));
-						
+
 						String nombre = listdata.get(i);
 						nombre = nombre
 								.substring(nombre.indexOf("nombre\":") + 9);
@@ -248,13 +247,15 @@ public class BuscarHerramienta extends Activity {
 						@Override
 						public void onItemClick(AdapterView<?> adapter,
 								View view, int position, long arg) {
-							
-							ItemHerramienta item = (ItemHerramienta) listView.getAdapter().getItem(
-									position);
-							
-							Toast.makeText(getBaseContext(), "Información de herramienta",
+
+							ItemHerramienta item = (ItemHerramienta) listView
+									.getAdapter().getItem(position);
+
+							Toast.makeText(getBaseContext(),
+									"Información de herramienta",
 									Toast.LENGTH_LONG).show();
-							Intent in = new Intent(BuscarHerramienta.this, InformacionHerramienta.class);
+							Intent in = new Intent(BuscarHerramienta.this,
+									InformacionHerramienta.class);
 							in.putExtra("nombre", item.getNombre());
 							in.putExtra("serial", item.getSerial());
 							in.putExtra("descripcion", item.getDescripcion());
@@ -276,7 +277,7 @@ public class BuscarHerramienta extends Activity {
 		}
 	}
 
-	private class HttpAsyncTask1 extends AsyncTask<String, Void, String> {
+	private class HttpAsyncTaskScanner extends AsyncTask<String, Void, String> {
 		@Override
 		protected String doInBackground(String... urls) {
 
@@ -290,7 +291,7 @@ public class BuscarHerramienta extends Activity {
 					String ID = result;
 					ID = ID.substring(ID.indexOf("id\":") + 5);
 					ID = ID.substring(0, ID.indexOf(","));
-					
+
 					String nombre = result;
 					nombre = nombre.substring(nombre.indexOf("nombre\":") + 10);
 					nombre = nombre.substring(0, nombre.indexOf("\""));
@@ -310,10 +311,12 @@ public class BuscarHerramienta extends Activity {
 							.indexOf("comentario\":") + 14);
 					comentario = comentario.substring(0,
 							comentario.indexOf("\""));
-					
-					Toast.makeText(getBaseContext(), "Información de herramienta",
-							Toast.LENGTH_LONG).show();
-					Intent in = new Intent(BuscarHerramienta.this, InformacionHerramienta.class);
+
+					Toast.makeText(getBaseContext(),
+							"Información de herramienta", Toast.LENGTH_LONG)
+							.show();
+					Intent in = new Intent(BuscarHerramienta.this,
+							InformacionHerramienta.class);
 					in.putExtra("nombre", nombre);
 					in.putExtra("serial", serial);
 					in.putExtra("descripcion", descripcion);

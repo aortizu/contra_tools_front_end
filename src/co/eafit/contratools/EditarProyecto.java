@@ -33,8 +33,10 @@ public class EditarProyecto extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
 	public void cerrar(View v) {
-		Toast.makeText(getBaseContext(), "Información de proyecto", Toast.LENGTH_LONG).show();
+		Toast.makeText(getBaseContext(), "Información de proyecto",
+				Toast.LENGTH_LONG).show();
 		this.finish();
 	}
 }

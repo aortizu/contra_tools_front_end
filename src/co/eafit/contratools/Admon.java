@@ -33,7 +33,7 @@ public class Admon extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	public void cerrar(View v) {
 		Toast.makeText(getBaseContext(), "Home", Toast.LENGTH_LONG).show();
 		this.finish();

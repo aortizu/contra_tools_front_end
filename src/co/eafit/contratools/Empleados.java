@@ -185,8 +185,13 @@ public class Empleados extends Activity {
 							ItemEmpleado item = (ItemEmpleado) listView
 									.getAdapter().getItem(position);
 
+							Toast.makeText(getBaseContext(),
+									"Información de empleado",
+									Toast.LENGTH_LONG).show();
+
 							Intent intent = new Intent(getApplicationContext(),
 									InformacionEmpleado.class);
+
 							intent.putExtra("id", item.getId());
 							intent.putExtra("nombre", item.getNombre());
 							intent.putExtra("cargo", item.getCargo());
@@ -196,8 +201,6 @@ public class Empleados extends Activity {
 							intent.putExtra("comentarios",
 									item.getComentarios());
 							startActivity(intent);
-							finish();
-
 						}
 					});
 				} else if (respuesta.equals("[]")) {
@@ -215,7 +218,8 @@ public class Empleados extends Activity {
 	}
 
 	public void buscarEmpleado(View v) {
-		Toast.makeText(getBaseContext(), "Buscar empleado", Toast.LENGTH_LONG).show();
+		Toast.makeText(getBaseContext(), "Buscar empleado", Toast.LENGTH_LONG)
+				.show();
 		Intent in = new Intent(this, BuscarEmpleado.class);
 		startActivity(in);
 	}

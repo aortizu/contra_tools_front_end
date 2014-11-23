@@ -23,7 +23,7 @@
     <string name="nueva">Nueva</string>
     <string name="title_activity_nueva_herramienta">Nueva Herramienta</string>
     <string name="nombre">Nombre</string>
-    <string name="serial">Serial de fábrica</string>
+    <string name="serial">Serial</string>
     <string name="descripci_n">Descripción</string>
     <string name="comentario">Comentario</string>
     <string name="guardar">Guardar</string>
@@ -70,5 +70,7 @@
     <string name="title_activity_buscar_herramienta">BuscarHerramienta</string>
     <string name="escanear_">"Escanear:  "</string>
     <string name="id">ID</string>
+    <string name="retirar_herramienta">Retirar herramienta</string>
+    <string name="serial_de_f_brica">Serial de fábrica</string>
 
 </resources>
