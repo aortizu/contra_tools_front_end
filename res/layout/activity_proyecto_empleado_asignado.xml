@@ -26,14 +26,15 @@
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <ImageButton
-            android:id="@+id/ImageButton02"
+            android:id="@+id/imageButton1"
             android:layout_width="0dp"
-            android:layout_height="45dp"
-            android:layout_weight="0.4"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.47"
             android:background="#ff005EFF"
             android:contentDescription="@string/hello_world"
-            android:onClick="guardar"
-            android:src="@drawable/guardar" />
+            android:onClick="reload"
+            android:src="@drawable/recargar" />
+
     </LinearLayout>
 
     <FrameLayout
@@ -41,13 +42,12 @@
         android:layout_height="0dip"
         android:layout_weight="1" >
 
+
         <ListView
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="359dp"
-            android:drawSelectorOnTop="false" >
-        </ListView>
-
+            android:layout_height="match_parent"
+            android:drawSelectorOnTop="false" />
     </FrameLayout>
 
 </LinearLayout>

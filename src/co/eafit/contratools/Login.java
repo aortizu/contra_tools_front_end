@@ -82,17 +82,9 @@ public class Login extends Activity {
 		InputStream inputStream = null;
 		String result = "";
 		try {
-
-			// create HttpClient
 			HttpClient httpclient = new DefaultHttpClient();
-
-			// make GET request to the given URL
 			HttpResponse httpResponse = httpclient.execute(new HttpGet(url));
-
-			// receive response as inputStream
 			inputStream = httpResponse.getEntity().getContent();
-
-			// convert inputstream to string
 			if (inputStream != null)
 				result = convertInputStreamToString(inputStream);
 			else

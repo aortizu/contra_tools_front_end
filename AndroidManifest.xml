@@ -124,6 +124,22 @@
             android:name=".BuscarHerramienta"
             android:label="@string/title_activity_buscar_herramienta" >
         </activity>
+        <activity
+            android:name=".List_item_select"
+            android:label="@string/title_activity_list_item_select" >
+        </activity>
+        <activity
+            android:name=".ProyectoEmpleadoAsignado"
+            android:label="@string/title_activity_proyecto_empleado_asignado" >
+        </activity>
+        <activity
+            android:name=".ItemAdapterSelect"
+            android:label="@string/title_activity_item_adapter_select" >
+        </activity>
+        <activity
+            android:name=".ItemSelect"
+            android:label="@string/title_activity_item_select" >
+        </activity>
     </application>
 
 </manifest>

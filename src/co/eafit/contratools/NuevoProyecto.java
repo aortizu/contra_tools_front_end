@@ -151,6 +151,17 @@ public class NuevoProyecto extends Activity {
 		protected void onPostExecute(String result) {
 			try {
 				if (result.contains(in1.getText().toString())) {
+
+					String ID = result;
+					ID = ID.substring(ID.indexOf("id\":") + 5);
+					ID = ID.substring(0, ID.indexOf("}"));
+
+					String nombre = in1.getText().toString();
+					nombre = nombre.replace(" ", "%20");
+
+					new HttpAsyncTaskEmpleados()
+							.execute("http://contratools-143332.sae1.nitrousbox.com:8080/proyecto_empleado/create?ids_empleados=%20&nombre_proyecto="
+									+ nombre + "&id_proyecto=" + ID);
 					Toast.makeText(getBaseContext(),
 							"Proyecto guardado con exito", Toast.LENGTH_LONG)
 							.show();
@@ -160,6 +171,23 @@ public class NuevoProyecto extends Activity {
 							"Error al guardar el proyecto", Toast.LENGTH_LONG)
 							.show();
 				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+	}
+
+	private class HttpAsyncTaskEmpleados extends
+			AsyncTask<String, Void, String> {
+		@Override
+		protected String doInBackground(String... urls) {
+			return POST(urls[0]);
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			try {
+				System.out.println(result);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}

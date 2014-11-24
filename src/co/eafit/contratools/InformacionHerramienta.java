@@ -147,7 +147,7 @@ public class InformacionHerramienta extends Activity {
 					Toast.makeText(getBaseContext(),
 							"Herramienta eliminada exitosamente!",
 							Toast.LENGTH_LONG).show();
-					finish();
+					navigatetoHomeActivity();
 				} else {
 					Toast.makeText(getBaseContext(),
 							"Error realizando conexión al servicio!",
@@ -157,5 +157,12 @@ public class InformacionHerramienta extends Activity {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public void navigatetoHomeActivity() {
+		Intent homeIntent = new Intent(getApplicationContext(), Home.class);
+		homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(homeIntent);
+		finish();
 	}
 }

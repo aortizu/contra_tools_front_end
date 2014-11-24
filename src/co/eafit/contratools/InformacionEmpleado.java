@@ -359,7 +359,7 @@ public class InformacionEmpleado extends Activity {
 					Toast.makeText(getBaseContext(),
 							"Empleado eliminado correctamente",
 							Toast.LENGTH_LONG).show();
-					finish();
+					navigatetoHomeActivity();
 				} else {
 					Toast.makeText(getBaseContext(),
 							"Error eliminando el empleado", Toast.LENGTH_LONG)
@@ -369,6 +369,13 @@ public class InformacionEmpleado extends Activity {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public void navigatetoHomeActivity() {
+		Intent homeIntent = new Intent(getApplicationContext(), Home.class);
+		homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(homeIntent);
+		finish();
 	}
 
 }

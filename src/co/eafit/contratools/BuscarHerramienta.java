@@ -54,6 +54,15 @@ public class BuscarHerramienta extends Activity {
 		this.check2 = (CheckBox) findViewById(R.id.checkBox2);
 		this.txt = (EditText) findViewById(R.id.editText1);
 		items = new ArrayList<ItemHerramienta>();
+		
+		if (isConnected()) {
+			new HttpAsyncTaskText()
+					.execute("http://contratools-143332.sae1.nitrousbox.com:8080/herramienta/");
+		} else {
+			Toast.makeText(getBaseContext(),
+					"Error realizando conexión al servicio!", Toast.LENGTH_LONG)
+					.show();
+		}
 	}
 
 	@Override

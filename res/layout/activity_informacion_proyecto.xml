@@ -143,12 +143,12 @@
             android:textSize="15sp" />
 
         <Button
-            android:id="@+id/Button02"
+            android:id="@+id/button2"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#ff005EFF"
-            android:onClick="asignarHerramienta"
-            android:text="@string/trabajadores_en_proyecto"
+            android:onClick="eliminar"
+            android:text="@string/eliminar"
             android:textColor="#ffffffff" />
 
         <TextView
@@ -163,7 +163,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#ff005EFF"
-            android:onClick="asignarHerramienta"
+            android:onClick="editar"
             android:text="@string/editar"
             android:textColor="#ffffffff" />
 
@@ -175,12 +175,12 @@
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/Button02"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#ff005EFF"
-            android:onClick="listaHerramientas"
-            android:text="@string/eliminar"
+            android:onClick="asignar"
+            android:text="@string/asignar_trabajadores"
             android:textColor="#ffffffff" />
 
         <TextView
@@ -195,7 +195,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#ff005EFF"
-            android:onClick="listaHerramientas"
+            android:onClick="concluir"
             android:text="@string/concluir_proyecto"
             android:textColor="#ffffffff" />
     </LinearLayout>

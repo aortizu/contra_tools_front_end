@@ -11,6 +11,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -160,7 +161,7 @@ public class EditarHerramienta extends Activity {
 					Toast.makeText(getBaseContext(),
 							"Herramienta editada exitosamente!",
 							Toast.LENGTH_LONG).show();
-					finish();
+					navigatetoHomeActivity();
 				} else {
 					Toast.makeText(getBaseContext(),
 							"Error realizando conexión al servicio!",
@@ -170,5 +171,12 @@ public class EditarHerramienta extends Activity {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public void navigatetoHomeActivity() {
+		Intent homeIntent = new Intent(getApplicationContext(), Home.class);
+		homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(homeIntent);
+		finish();
 	}
 }
