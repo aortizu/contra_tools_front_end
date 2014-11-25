@@ -13,7 +13,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -25,19 +24,32 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
 public class ProyectoEmpleado extends Activity {
 
+	private Bundle extras;
 	private ListView listView;
-	private List<ItemSelect> items;
-	
+	private List<ItemSelect> items, aux;
+	private String empleados, id;
+	private CheckBox check;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_proyecto_empleado);
-		
+
+		empleados = "";
+
+		check = (CheckBox) findViewById(R.id.checkBox2);
+
+		extras = getIntent().getExtras();
+		if (extras != null) {
+			id = extras.getString("id", "");
+		}
+
 		this.listView = (ListView) findViewById(R.id.list);
 		items = new ArrayList<ItemSelect>();
 
@@ -69,18 +81,37 @@ public class ProyectoEmpleado extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	
-	public void guardar(View V){
-		String empleados = "";
+
+	public void guardar(View V) {
+
 		for (int i = 0; i < items.size(); i++) {
-			if (items.get(i).isChecked()){
-				empleados = empleados + items.get(i).getId();
+			if (items.get(i).isChecked()) {
+				empleados = empleados + items.get(i).getId() + ",";
 			}
 		}
+
+		if (isConnected()) {
+			new HttpAsyncTaskEmpleados()
+					.execute("http://contratools-143332.sae1.nitrousbox.com:8080/proyecto_empleado/add/"
+							+ id);
+		} else {
+			Toast.makeText(getBaseContext(),
+					"Error realizando conexión al servicio!", Toast.LENGTH_LONG)
+					.show();
+		}
 	}
-	
-	
+
+	public void filtro(View V) {
+		if (isConnected()) {
+			new HttpAsyncTask()
+					.execute("http://contratools-143332.sae1.nitrousbox.com:8080/empleado/");
+		} else {
+			Toast.makeText(getBaseContext(),
+					"Error realizando conexión al servicio!", Toast.LENGTH_LONG)
+					.show();
+		}
+	}
+
 	public static String GET(String url) {
 		InputStream inputStream = null;
 		String result = "";
@@ -192,20 +223,10 @@ public class ProyectoEmpleado extends Activity {
 						items.add(new ItemSelect(R.drawable.empleado, nombre,
 								cargo, documento, vinculacion, comentarios, id));
 					}
-					listView.setAdapter(new ItemAdapterSelect(ProyectoEmpleado.this,
-							items));
+					new HttpAsyncTaskConsultar()
+							.execute("http://contratools-143332.sae1.nitrousbox.com:8080/proyecto_empleado/add/"
+									+ ProyectoEmpleado.this.id);
 
-					listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-						@Override
-						public void onItemClick(AdapterView<?> adapter,
-								View view, int position, long arg) {
-							ItemSelect item = (ItemSelect) listView
-									.getAdapter().getItem(position);
-							item.setChecked(!item.isChecked());
-							listView.setAdapter(new ItemAdapterSelect(ProyectoEmpleado.this,
-									items));
-						}
-					});
 				} else if (respuesta.equals("[]")) {
 					items.clear();
 				} else {
@@ -219,8 +240,9 @@ public class ProyectoEmpleado extends Activity {
 			}
 		}
 	}
-	
-	private class HttpAsyncTaskEmpleados extends AsyncTask<String, Void, String> {
+
+	private class HttpAsyncTaskEmpleados extends
+			AsyncTask<String, Void, String> {
 		@Override
 		protected String doInBackground(String... urls) {
 			return GET(urls[0]);
@@ -229,7 +251,115 @@ public class ProyectoEmpleado extends Activity {
 		@Override
 		protected void onPostExecute(String result) {
 			try {
-				
+				if (result.contains("id") && result.contains(id)) {
+					String ID = result;
+					ID = ID.substring(ID.indexOf("id\":") + 5);
+					ID = ID.substring(0, ID.indexOf(","));
+
+					if (!empleados.equals(""))
+						new HttpAsyncTaskAsignar()
+								.execute("http://contratools-143332.sae1.nitrousbox.com:8080/proyecto_empleado/update/"
+										+ ID + "?ids_empleados=" + empleados);
+				} else {
+					Toast.makeText(getBaseContext(),
+							"Error realizando conexión al servicio!",
+							Toast.LENGTH_LONG).show();
+				}
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+	}
+
+	private class HttpAsyncTaskAsignar extends AsyncTask<String, Void, String> {
+		@Override
+		protected String doInBackground(String... urls) {
+			return GET(urls[0]);
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			try {
+				if (result.contains("id")) {
+					Toast.makeText(getBaseContext(),
+							"Trabajadores asignados correctamente",
+							Toast.LENGTH_LONG).show();
+					finish();
+				} else {
+					Toast.makeText(getBaseContext(),
+							"Error realizando conexión al servicio!",
+							Toast.LENGTH_LONG).show();
+				}
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+	}
+
+	private class HttpAsyncTaskConsultar extends
+			AsyncTask<String, Void, String> {
+		@Override
+		protected String doInBackground(String... urls) {
+			return GET(urls[0]);
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			try {
+				if (result.contains("id")) {
+
+					String ids = result;
+					ids = ids.substring(ids.indexOf("ids_empleados\":") + 17);
+					ids = ids.substring(0, ids.indexOf("\""));
+
+					String[] array;
+
+					if (!ids.isEmpty()) {
+						if (ids.contains(",")) {
+							array = ids.split(",", -1);
+							for (int i = 0; i < array.length - 1; i++) {
+								for (int j = 0; j < items.size(); j++) {
+									if (items.get(j).getId().equals(array[i]))
+										items.get(j).setChecked(true);
+								}
+							}
+						}
+					}
+
+					aux = new ArrayList<ItemSelect>();
+
+					if (check.isChecked()) {
+						for (int i = 0; i < items.size(); i++) {
+							if (items.get(i).isChecked())
+								aux.add(items.get(i));
+						}
+					} else {
+						aux = items;
+					}
+					
+					listView.setAdapter(new ItemAdapterSelect(
+							ProyectoEmpleado.this, aux));
+
+					listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+						@Override
+						public void onItemClick(AdapterView<?> adapter,
+								View view, int position, long arg) {
+							ItemSelect item = (ItemSelect) listView
+									.getAdapter().getItem(position);
+							item.setChecked(!item.isChecked());
+							listView.setAdapter(new ItemAdapterSelect(
+									ProyectoEmpleado.this, aux));
+						}
+					});
+
+				} else {
+					Toast.makeText(getBaseContext(),
+							"Error realizando conexión al servicio!",
+							Toast.LENGTH_LONG).show();
+				}
+
 			} catch (Exception e) {
 				// TODO: handle exception
 			}

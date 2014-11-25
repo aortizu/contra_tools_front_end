@@ -116,6 +116,7 @@ public class InformacionProyecto extends Activity {
 		Toast.makeText(getBaseContext(), "Asignar empleados ", Toast.LENGTH_LONG)
 				.show();
 		Intent in = new Intent(this, ProyectoEmpleado.class);
+		in.putExtra("id", id);
 		startActivity(in);
 		finish();
 	}

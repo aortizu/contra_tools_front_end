@@ -22,11 +22,11 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
-            android:id="@+id/actualPassword"
+            android:id="@+id/editText3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textShortMessage" >
+            android:inputType="textPersonName" >
 
             <requestFocus />
         </EditText>
@@ -57,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textShortMessage" />
+            android:inputType="number" />
 
         <TextView
             android:id="@+id/TextView01"
@@ -67,11 +67,11 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
-            android:id="@+id/vinculacion"
+            android:id="@+id/editText1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textShortMessage" />
+            android:inputType="date" />
 
         <TextView
             android:id="@+id/textView4"

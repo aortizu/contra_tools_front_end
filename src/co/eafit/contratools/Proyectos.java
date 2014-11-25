@@ -231,7 +231,7 @@ public class Proyectos extends Activity {
 									.getAdapter().getItem(position);
 
 							Toast.makeText(getBaseContext(),
-									"Información de empleado",
+									"Información del proyecto",
 									Toast.LENGTH_LONG).show();
 
 							Intent intent = new Intent(getApplicationContext(),

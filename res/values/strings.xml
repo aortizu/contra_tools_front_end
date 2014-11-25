@@ -78,5 +78,6 @@
     <string name="title_activity_item_adapter_select">ItemAdapterSelect</string>
     <string name="title_activity_item_select">ItemSelect</string>
     <string name="asignar_trabajadores">Asignar trabajadores</string>
+    <string name="empleados_asignados_al_proyecto">Empleados asignados al proyecto</string>
 
 </resources>

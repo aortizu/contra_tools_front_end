@@ -9,9 +9,10 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -28,14 +29,20 @@ public class Login extends Activity {
 	private EditText in1, in2;
 	private String s1;
 	private String s2;
+	private SharedPreferences prefs;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		in1 = (EditText) findViewById(R.id.actualPassword);
+		
+		prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
+		
+		in1 = (EditText) findViewById(R.id.editText1);
 		in2 = (EditText) findViewById(R.id.editText2);
 
+		in1.setText(prefs.getString("nombre", ""));
+		
 	}
 
 	@Override
@@ -47,9 +54,6 @@ public class Login extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;
@@ -134,28 +138,33 @@ public class Login extends Activity {
 			return GET(urls[0]);
 		}
 
-		// onPostExecute displays the results of the AsyncTask.
 		@Override
 		protected void onPostExecute(String result) {
 			try {
-				// Toast.makeText(getBaseContext(), "Received!",
-				// Toast.LENGTH_LONG).show();
-				JSONArray json = new JSONArray(result);
-				String respuesta = json.toString(1);
-				if (respuesta.contains(s1) && respuesta.contains(s2)) {
+				if (result.contains(s1) && result.contains(s2)) {
+					SharedPreferences.Editor editor = prefs.edit();
 
-					// setContentView(R.layout.activity_home);
+					String id = result;
+					id = id.substring(id.indexOf("id\":") + 5);
+					id = id.substring(0, id.indexOf(","));
+					if (!id.equals("null"))
+						editor.putString("userID", id);
+					
+					String nombre =  result;
+					nombre = nombre
+							.substring(nombre.indexOf("usuario\":") + 11);
+					nombre = nombre.substring(0, nombre.indexOf("\""));
+					if (!nombre.equals("null"))
+						editor.putString("nombre", nombre);
+					
+					editor.commit();
+					
 					navigatetoHomeActivity();
-				} else if (respuesta.equals("[]")) {
+				} else{
 					Toast.makeText(getBaseContext(),
 							"Usuario o password incorrecto", Toast.LENGTH_LONG)
 							.show();
-				} else {
-					Toast.makeText(getBaseContext(),
-							"Error realizando conexión al servicio!",
-							Toast.LENGTH_LONG).show();
-				}
-				// etResponse.setText(json.toString(1));
+				} 
 			} catch (Exception e) {
 				// TODO: handle exception
 			}

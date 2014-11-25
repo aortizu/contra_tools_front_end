@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textEmailAddress" >
+            android:inputType="textPassword" >
 
             <requestFocus />
         </EditText>
@@ -90,7 +90,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#ff005EFF"
-            android:onClick="crearUsuario"
+            android:onClick="cambiar"
             android:text="@string/cambiar"
             android:textColor="#ffffffff" />
 

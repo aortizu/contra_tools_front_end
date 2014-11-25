@@ -31,10 +31,10 @@ public class NuevoEmpleado extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_nuevo_empleado);
 
-		in1 = (EditText) findViewById(R.id.actualPassword);
+		in1 = (EditText) findViewById(R.id.editText3);
 		in2 = (EditText) findViewById(R.id.editText2);
 		in3 = (EditText) findViewById(R.id.documento);
-		in4 = (EditText) findViewById(R.id.vinculacion);
+		in4 = (EditText) findViewById(R.id.editText1);
 		in5 = (EditText) findViewById(R.id.Comentario);
 	}
 
